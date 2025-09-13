@@ -1,18 +1,31 @@
 # AI Vibe Coding Hackathon Project
 
-A full-stack web application with React frontend and FastAPI backend.
+A full-stack web application with multiple frontend and backend implementations.
 
 ## Project Structure
 
 ```
 AI_Vibe_Coding_Hackathon/
-├── frontend/          # React frontend application
+├── frontend/          # React JavaScript frontend
 │   ├── src/
 │   ├── public/
 │   ├── package.json
 │   └── README.md
-├── backend/           # FastAPI backend application
+├── frontend-ts/       # React TypeScript frontend
+│   ├── src/
+│   ├── public/
+│   ├── package.json
+│   ├── tsconfig.json
+│   └── README.md
+├── backend/           # FastAPI backend
 │   ├── main.py
+│   ├── requirements.txt
+│   ├── .env.example
+│   └── README.md
+├── backend-django/    # Django REST API backend
+│   ├── myproject/
+│   ├── api/
+│   ├── manage.py
 │   ├── requirements.txt
 │   ├── .env.example
 │   └── README.md
@@ -20,85 +33,160 @@ AI_Vibe_Coding_Hackathon/
 └── README.md
 ```
 
-## Quick Start
+## Available Implementations
 
-### Backend Setup
+### React TypeScript + Django (Recommended)
+- **Frontend**: React with TypeScript for type safety
+- **Backend**: Django REST Framework for robust API development
+- **Location**: `frontend-ts/` and `backend-django/`
 
-1. Navigate to the backend directory:
+### React JavaScript + FastAPI
+- **Frontend**: React with JavaScript
+- **Backend**: FastAPI for high-performance API
+- **Location**: `frontend/` and `backend/`
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js (v14 or higher)
+- Python (v3.8 or higher)
+- npm or yarn
+- pip
+
+### Quick Start (React TypeScript + Django)
+
+1. Clone the repository:
    ```bash
-   cd backend
+   git clone <repository-url>
+   cd AI_Vibe_Coding_Hackathon
    ```
 
-2. Create and activate a virtual environment:
+2. Set up the Django backend:
    ```bash
+   cd backend-django
    python -m venv venv
-   source venv/bin/activate  # On macOS/Linux
-   # venv\Scripts\activate   # On Windows
-   ```
-
-3. Install dependencies:
-   ```bash
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
    pip install -r requirements.txt
+   cp .env.example .env
+   python manage.py migrate
+   python manage.py runserver
    ```
 
-4. Start the FastAPI server:
+3. Set up the React TypeScript frontend (in a new terminal):
    ```bash
-   python main.py
-   ```
-
-   The backend will be available at `http://localhost:8000`
-
-### Frontend Setup
-
-1. Navigate to the frontend directory:
-   ```bash
-   cd frontend
-   ```
-
-2. Install dependencies:
-   ```bash
+   cd frontend-ts
    npm install
-   ```
-
-3. Start the React development server:
-   ```bash
    npm start
    ```
 
-   The frontend will be available at `http://localhost:3000`
+4. Open your browser and navigate to `http://localhost:3000`
+
+### Alternative Setup (React JavaScript + FastAPI)
+
+1. Set up the FastAPI backend:
+   ```bash
+   cd backend
+   pip install -r requirements.txt
+   cp .env.example .env
+   uvicorn main:app --reload
+   ```
+
+2. Set up the React frontend (in a new terminal):
+   ```bash
+   cd frontend
+   npm install
+   npm start
+   ```
 
 ## Technology Stack
 
-### Frontend
-- **React 18** - Modern React with functional components
-- **Axios** - HTTP client for API communication
-- **CSS3** - Modern styling
-- **Jest & React Testing Library** - Testing framework
+### React TypeScript + Django Implementation
 
-### Backend
-- **FastAPI** - Modern Python web framework
-- **Uvicorn** - ASGI server
-- **Pydantic** - Data validation using Python type hints
-- **CORS Middleware** - Cross-origin resource sharing
+**Frontend (frontend-ts/)**
+- React.js with TypeScript
+- HTML5/CSS3
+- TypeScript for type safety
+- Axios for API calls
+- Modern React hooks and functional components
+
+**Backend (backend-django/)**
+- Django 4.2.7
+- Django REST Framework
+- Python 3.8+
+- SQLite (development) / PostgreSQL (production)
+- Django CORS Headers
+- Environment variable management
+
+### React JavaScript + FastAPI Implementation
+
+**Frontend (frontend/)**
+- React.js
+- HTML5/CSS3
+- JavaScript (ES6+)
+- Axios for API calls
+
+**Backend (backend/)**
+- FastAPI
+- Python
+- Pydantic for data validation
+- Uvicorn ASGI server
 
 ## API Documentation
 
-Once the backend is running, you can access:
-- **Swagger UI**: `http://localhost:8000/docs`
-- **ReDoc**: `http://localhost:8000/redoc`
+### Django REST API (backend-django/)
+
+Once the Django backend is running, you can access:
+
+- **API Root**: `http://localhost:8000/api/`
+- **Django Admin**: `http://localhost:8000/admin/`
+- **Health Check**: `http://localhost:8000/api/health/`
+
+#### Available Endpoints
+
+**Health & Utility**
+- `GET /api/` - API root with endpoint list
+- `GET /api/health/` - Health check endpoint
+- `GET /api/hello/` - Simple hello message
+- `POST /api/echo/` - Echo back the sent message
+
+**Messages**
+- `GET /api/messages/` - List all messages
+- `POST /api/messages/` - Create a new message
+- `GET /api/messages/{id}/` - Retrieve a specific message
+- `PUT /api/messages/{id}/` - Update a specific message
+- `DELETE /api/messages/{id}/` - Delete a specific message
+
+**Categories**
+- `GET /api/categories/` - List all categories
+- `POST /api/categories/` - Create a new category
+- `GET /api/categories/{id}/` - Retrieve a specific category
+- `PUT /api/categories/{id}/` - Update a specific category
+- `DELETE /api/categories/{id}/` - Delete a specific category
+
+### FastAPI Documentation (backend/)
+
+Once the FastAPI backend is running, you can access:
+
+- **Interactive API docs**: `http://localhost:8000/docs`
+- **Alternative API docs**: `http://localhost:8000/redoc`
+- **OpenAPI JSON**: `http://localhost:8000/openapi.json`
+
+#### Available Endpoints
+
+- `GET /` - Root endpoint
+- `GET /health` - Health check
+- `GET /items` - Get all items
+- `POST /items` - Create new item
+- `GET /items/{item_id}` - Get specific item
+- `PUT /items/{item_id}` - Update specific item
+- `DELETE /items/{item_id}` - Delete specific item
 
 ## Development
 
 1. Start the backend server first (port 8000)
 2. Start the frontend development server (port 3000)
 3. The frontend is configured to communicate with the backend via CORS
-
-## Available API Endpoints
-
-- `GET /` - Welcome message
-- `GET /health` - Health check
-- `GET /api/hello` - Hello message
-- `POST /api/echo` - Echo service
 
 ## Contributing
 

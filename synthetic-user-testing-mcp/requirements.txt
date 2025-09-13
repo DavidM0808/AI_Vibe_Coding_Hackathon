@@ -1,0 +1,47 @@
+# Core MCP framework
+fastmcp>=0.9.0
+
+# Browser automation
+playwright>=1.40.0
+
+# Data models and validation
+pydantic>=2.5.0
+
+# Async support
+aiofiles>=23.2.0
+
+# Logging
+loguru>=0.7.2
+
+# JSON handling
+orjson>=3.9.10
+
+# UUID generation (built-in, but explicit for clarity)
+# uuid - built-in module
+
+# Date/time handling (built-in)
+# datetime - built-in module
+
+# Path handling (built-in)
+# pathlib - built-in module
+
+# Collections for Counter (built-in)
+# collections - built-in module
+
+# Random for user behavior simulation (built-in)
+# random - built-in module
+
+# Time for delays (built-in)
+# time - built-in module
+
+# Asyncio for async operations (built-in)
+# asyncio - built-in module
+
+# JSON for data serialization (built-in)
+# json - built-in module
+
+# OS for environment variables (built-in)
+# os - built-in module
+
+# Typing for type hints (built-in)
+# typing - built-in module
