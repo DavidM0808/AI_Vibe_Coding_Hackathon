@@ -1,0 +1,530 @@
+[
+  {
+    "id": "TC001",
+    "title": "User Registration Success",
+    "description": "Verify that a user can successfully register with valid email and password, creating a profile with hashed password and receiving a verification email.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to registration page"
+      },
+      {
+        "type": "action",
+        "description": "Input valid email and password"
+      },
+      {
+        "type": "action",
+        "description": "Submit registration form"
+      },
+      {
+        "type": "assertion",
+        "description": "Check that user profile is created in database with hashed password"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a verification email is sent"
+      }
+    ]
+  },
+  {
+    "id": "TC002",
+    "title": "User Registration with Duplicate Email",
+    "description": "Verify the system prevents registering with an email that already exists in the system.",
+    "category": "error handling",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to registration page"
+      },
+      {
+        "type": "action",
+        "description": "Input an email already registered and valid password"
+      },
+      {
+        "type": "action",
+        "description": "Submit registration form"
+      },
+      {
+        "type": "assertion",
+        "description": "Check that registration fails with an appropriate error message"
+      }
+    ]
+  },
+  {
+    "id": "TC003",
+    "title": "Login Success with Valid Credentials",
+    "description": "Verify that a user can successfully login using valid email and password and receives a valid JWT token.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to login page"
+      },
+      {
+        "type": "action",
+        "description": "Enter valid registered email and password"
+      },
+      {
+        "type": "action",
+        "description": "Click login button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify JWT token is returned and stored client-side"
+      },
+      {
+        "type": "assertion",
+        "description": "Check the user is redirected to the chat dashboard"
+      }
+    ]
+  },
+  {
+    "id": "TC004",
+    "title": "Login Failure with Invalid Credentials",
+    "description": "Verify that login fails and returns an error when using incorrect email or password.",
+    "category": "error handling",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to login page"
+      },
+      {
+        "type": "action",
+        "description": "Enter invalid email or password"
+      },
+      {
+        "type": "action",
+        "description": "Click login button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify error message is displayed indicating invalid credentials"
+      }
+    ]
+  },
+  {
+    "id": "TC005",
+    "title": "Route Protection for Unauthorized Access",
+    "description": "Verify that protected routes redirect to login page when accessed by unauthenticated users and allow access when authenticated.",
+    "category": "security",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Attempt to access chat dashboard URL without authentication"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify redirection to login page"
+      },
+      {
+        "type": "action",
+        "description": "Login with valid credentials"
+      },
+      {
+        "type": "action",
+        "description": "Attempt to access chat dashboard URL"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify access to chat dashboard is granted"
+      }
+    ]
+  },
+  {
+    "id": "TC006",
+    "title": "Send and Receive Real-time Messages",
+    "description": "Validate that users can send text messages in real-time using Socket.io and that the recipient receives them instantly.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Login as User A and open chat with User B"
+      },
+      {
+        "type": "action",
+        "description": "Login as User B on another device/session and open chat with User A"
+      },
+      {
+        "type": "action",
+        "description": "User A types and sends a message to User B"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify User B receives the message instantly"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify message is stored in the database with correct read status"
+      }
+    ]
+  },
+  {
+    "id": "TC007",
+    "title": "Typing Indicator Display",
+    "description": "Ensure that when a user is typing a message, the other user in the conversation sees a typing indicator in real-time.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "User A begins typing message in chat with User B"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify User B sees typing indicator immediately"
+      },
+      {
+        "type": "action",
+        "description": "User A stops typing"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the typing indicator disappears for User B"
+      }
+    ]
+  },
+  {
+    "id": "TC008",
+    "title": "Display Online/Offline Status",
+    "description": "Verify the system displays correct real-time online or offline status indicators for contacts in the contact list and chat conversations.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Login as User A and open contact list"
+      },
+      {
+        "type": "action",
+        "description": "Login as User B and ensure User B appears online"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify User B’s status is shown as online in User A’s contact list"
+      },
+      {
+        "type": "action",
+        "description": "User B logs out or disconnects"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify User B’s status changes to offline for User A immediately"
+      }
+    ]
+  },
+  {
+    "id": "TC009",
+    "title": "Message Read Status Update",
+    "description": "Verify that when a user reads a message, the read status is updated in real-time and reflected correctly for the sender.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "User A sends a message to User B"
+      },
+      {
+        "type": "action",
+        "description": "User B opens the chat and views the message"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the message read status is updated in database and reflected to User A in real-time"
+      }
+    ]
+  },
+  {
+    "id": "TC010",
+    "title": "Load Paginated Message History",
+    "description": "Ensure that the chat room loads messages in a paginated way and users can scroll to load older messages correctly.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Open chat room with a contact having a long message history"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify initial set of most recent messages is loaded"
+      },
+      {
+        "type": "action",
+        "description": "Scroll up to load previous messages"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify older messages load correctly and append to chat history"
+      }
+    ]
+  },
+  {
+    "id": "TC011",
+    "title": "Add New Contact Successfully",
+    "description": "Validate the user can search for users and add new contacts which appear in the contact list with accurate status.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Enter a valid username or email in the add contact search field"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify search results display matching users"
+      },
+      {
+        "type": "action",
+        "description": "Select a user and send a contact request/add"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the new contact is added to the contact list and saved in database"
+      }
+    ]
+  },
+  {
+    "id": "TC012",
+    "title": "Add Contact with Non-Existent User",
+    "description": "Verify system handles attempts to add contacts that do not exist correctly by showing appropriate error.",
+    "category": "error handling",
+    "priority": "Low",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Search for a username or email that does not exist"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the search returns no results and shows a suitable message"
+      },
+      {
+        "type": "action",
+        "description": "Attempt to add the non-existent user as contact"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify error message is displayed preventing addition"
+      }
+    ]
+  },
+  {
+    "id": "TC013",
+    "title": "Update User Profile Information",
+    "description": "Verify users can update their profile information including display name, avatar image, bio, and notification preferences which reflect immediately.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to profile settings page"
+      },
+      {
+        "type": "action",
+        "description": "Update display name, upload avatar, edit bio, and change notification preferences"
+      },
+      {
+        "type": "action",
+        "description": "Save the changes"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify changes are persisted in database"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify updated profile information is immediately displayed in profile and relevant UI sections"
+      }
+    ]
+  },
+  {
+    "id": "TC014",
+    "title": "Logout Terminates Session and Invalidates Token",
+    "description": "Confirm that logging out clears the session, invalidates JWT token, and redirects user to login page.",
+    "category": "security",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Login successfully to the application"
+      },
+      {
+        "type": "action",
+        "description": "Initiate logout from user menu"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify JWT token is cleared from client storage"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify user session is terminated on the server"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify user is redirected to the login page"
+      }
+    ]
+  },
+  {
+    "id": "TC015",
+    "title": "API Endpoint Request and Response Validation",
+    "description": "Test that all API endpoints respond with correct status codes and error messages on valid and invalid requests conforming to defined formats.",
+    "category": "error handling",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Send valid requests to authentication, messaging, and user management endpoints"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify success responses conform to the API specification"
+      },
+      {
+        "type": "action",
+        "description": "Send invalid or malformed requests (e.g. missing parameters, unauthorized access)"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify error responses have meaningful error messages and proper HTTP status codes"
+      }
+    ]
+  },
+  {
+    "id": "TC016",
+    "title": "Conversation List Shows Latest Messages and Unread Counts",
+    "description": "Verify the conversations dashboard lists all conversations with the latest message snippet, correct unread message counts, and updates in real-time.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Login and navigate to conversations list"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify each conversation entry displays latest message and correct unread count"
+      },
+      {
+        "type": "action",
+        "description": "Receive new message in one conversation"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify conversations list updates real-time with latest message and count"
+      }
+    ]
+  },
+  {
+    "id": "TC017",
+    "title": "UI Responsive Design Across Devices",
+    "description": "Ensure the UI adapts correctly on desktop and mobile devices with responsive layouts and accessibility compliance.",
+    "category": "ui",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Open the app on desktop browser"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify navigation, chat rooms, contact list, and profile settings render correctly and are usable"
+      },
+      {
+        "type": "action",
+        "description": "Open the app on mobile browser and simulate various screen sizes"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify UI components resize and reposition appropriately and remain fully functional"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify accessibility tags and keyboard navigability are present"
+      }
+    ]
+  },
+  {
+    "id": "TC018",
+    "title": "System Performance Under Concurrent Messaging Load",
+    "description": "Verify stable performance and responsiveness of the real-time messaging system during multiple concurrent messaging sessions.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Simulate multiple users (e.g. 50+) sending and receiving messages concurrently"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify messages are delivered without significant delay"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify server does not crash and response time metrics remain within acceptable thresholds"
+      }
+    ]
+  },
+  {
+    "id": "TC019",
+    "title": "Password Recovery Flow Works Correctly",
+    "description": "Verify users can request password recovery, receive an email with reset link, and successfully reset their password.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to password recovery page"
+      },
+      {
+        "type": "action",
+        "description": "Submit registered email for password reset"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify recovery email with reset link is sent"
+      },
+      {
+        "type": "action",
+        "description": "Follow the reset link and enter a new password"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify password is updated and the user can login with new password"
+      }
+    ]
+  },
+  {
+    "id": "TC020",
+    "title": "Invalid Token Access Attempt",
+    "description": "Verify that API endpoints reject requests with expired or invalid JWT tokens and respond with appropriate HTTP 401 Unauthorized errors.",
+    "category": "security",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Make authenticated API request using invalid or expired JWT token"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify server responds with 401 Unauthorized status"
+      },
+      {
+        "type": "action",
+        "description": "Make API request without any JWT token to protected endpoint"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify server responds with 401 Unauthorized status"
+      }
+    ]
+  }
+]

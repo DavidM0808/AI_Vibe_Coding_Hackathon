@@ -1,0 +1,18 @@
+{
+  "status": "commited",
+  "type": "frontend",
+  "scope": "codebase",
+  "localEndpoint": "http://localhost:5173",
+  "loginUser": "DVDPunish",
+  "loginPassword": "HelloWorld123!",
+  "executionArgs": {
+    "projectName": "AI_Vibe_Coding_Hackathon",
+    "projectPath": "/Users/dm/Desktop/AI_Vibe_Coding_Hackathon",
+    "testIds": [],
+    "additionalInstruction": "",
+    "envs": {
+      "API_KEY": "sk-user-EpC6sJ4RGj8aCLgxrAc0LF3X5UR18uGmNpsRLPGBRW9W3x8jtd3Lqx-BZQpIaitcSXhod7tIvu6e0W6rYbLiiCNZHRKHba8IVzFmbVTOGOvSvHv6selfNWGM-WwmGTBo5cM"
+    }
+  },
+  "proxy": "http://b9e71d22-eaa1-4741-80e5-9692e095a30b:zhQyP3dtvhkfd3gD9eGfnfsFNDeg98A4@tun.testsprite.com:8080"
+}

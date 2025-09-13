@@ -1,0 +1,104 @@
+{
+  "tech_stack": [
+    "TypeScript",
+    "React",
+    "Node.js",
+    "Express.js",
+    "Socket.io",
+    "Supabase",
+    "PostgreSQL",
+    "Vite",
+    "TailwindCSS",
+    "JWT Authentication",
+    "Zustand",
+    "React Router"
+  ],
+  "features": [
+    {
+      "name": "Authentication System",
+      "description": "Complete user authentication with login, register, JWT tokens, and protected routes",
+      "files": [
+        "src/contexts/AuthContext.tsx",
+        "src/components/auth/Login.tsx",
+        "src/components/auth/Register.tsx",
+        "api/routes/auth.ts"
+      ]
+    },
+    {
+      "name": "Real-time Chat System",
+      "description": "Socket.io powered real-time messaging with typing indicators and online status",
+      "files": [
+        "src/contexts/SocketContext.tsx",
+        "src/components/chat/ChatRoom.tsx",
+        "src/components/chat/ChatDashboard.tsx",
+        "api/app.ts"
+      ]
+    },
+    {
+      "name": "Message Management",
+      "description": "Send, receive, and manage messages with read status and conversation history",
+      "files": [
+        "api/routes/messages.ts",
+        "src/components/chat/ChatRoom.tsx",
+        "src/types/message.ts"
+      ]
+    },
+    {
+      "name": "Contact Management",
+      "description": "Add contacts, search users, and manage contact lists",
+      "files": [
+        "src/components/chat/AddContactModal.tsx",
+        "src/components/chat/ContactList.tsx",
+        "api/routes/messages.ts"
+      ]
+    },
+    {
+      "name": "User Profile Management",
+      "description": "User profile settings, status updates, and avatar management",
+      "files": [
+        "src/components/profile/ProfileSettings.tsx",
+        "api/routes/auth.ts"
+      ]
+    },
+    {
+      "name": "Database Schema",
+      "description": "Supabase PostgreSQL database with users, messages, contacts, and sessions tables",
+      "files": [
+        "supabase/migrations/001_initial_schema.sql",
+        "api/config/supabase.ts"
+      ]
+    },
+    {
+      "name": "Conversation Management",
+      "description": "Display and manage conversation lists with latest messages and unread counts",
+      "files": [
+        "src/components/chat/ConversationList.tsx",
+        "api/routes/messages.ts"
+      ]
+    },
+    {
+      "name": "Route Protection",
+      "description": "Protected and public routes with authentication guards",
+      "files": [
+        "src/App.tsx"
+      ]
+    },
+    {
+      "name": "API Server",
+      "description": "Express.js REST API with CORS, authentication middleware, and health checks",
+      "files": [
+        "api/app.ts",
+        "api/server.ts"
+      ]
+    },
+    {
+      "name": "Development Environment",
+      "description": "Vite development server with hot reload, proxy configuration, and concurrent backend/frontend",
+      "files": [
+        "vite.config.ts",
+        "package.json",
+        "nodemon.json"
+      ]
+    }
+  ]
+}
