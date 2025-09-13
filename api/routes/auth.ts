@@ -136,7 +136,17 @@ router.post('/logout', async (req: Request, res: Response): Promise<void> => {
     }
 
     const token = authHeader.substring(7)
-    const { error } = await supabaseAdmin.auth.signOut(token)
+    
+    // Verify the token first
+    const { data: { user }, error: userError } = await supabaseAdmin.auth.getUser(token)
+    
+    if (userError || !user) {
+      res.status(401).json({ error: 'Invalid token' })
+      return
+    }
+
+    // Sign out the user
+    const { error } = await supabaseAdmin.auth.admin.signOut(user.id)
 
     if (error) {
       res.status(400).json({ error: error.message })

@@ -14,7 +14,6 @@ import { fileURLToPath } from 'url'
 import authRoutes from './routes/auth.js'
 import projectRoutes from './routes/projects.js'
 import agentRoutes from './routes/agents.js'
-import { errorHandler } from './middleware/errorHandler.js'
 
 // for esm mode
 const __filename = fileURLToPath(import.meta.url)
