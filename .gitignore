@@ -1,0 +1,5 @@
+#Generated files
+.trae
+.vite
+dist
+node_modules
